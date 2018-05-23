@@ -51,12 +51,10 @@ def get_pred_result(x):
     return '洛天依' if x[0][0] > x[0][1] else '乐正绫'
 
 
-batch_size = 50
 num_classes = 2
-epochs = 100
 # load images
-train_path = 'E:/Coding/Python/Vconfig/dataset/'
-test_path = 'E:/Coding/Python/Vconfig/dataset/test/'
+train_path = '.\\dataset\\'
+test_path = '.\\dataset.\\test\\'
 x_train, y_train = read_img(train_path)
 x_test, y_test = read_img(test_path)
 y_train = get_y_train(y_train, num_classes)
@@ -76,6 +74,8 @@ model.add(Dense(128, activation='relu'))
 model.add(Dropout(.3))
 model.add(Dense(num_classes, activation='softmax'))
 
+batch_size = 50
+epochs = 100
 adam = keras.optimizers.Adam(lr=0.001)
 model.compile(loss=ccey, optimizer=adam, metrics=['accuracy'])
 model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, validation_data=(x_test, y_test))
